@@ -1,0 +1,8 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name:  dispatcher-service
+spec:
+  selector:
+    app:  catalog-app
+  type:  ClusterIP

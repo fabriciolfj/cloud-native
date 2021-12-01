@@ -1,0 +1,14 @@
+docker run --name polardb-catalog -e POSTGRES_USER=admin -e POSTGRES_PASSWORD=admin -e POSTGRES_DB=polardb_catalog -p 5432:5432 -d postgres:13
+
+docker run -d --name catalog-service -p 9001:9001 --net catalog-network -e SPRING_DATASOURCE_URL=jdbc:postgresql://polardb-catalog:5432/polardb_catalog fabricio211/catalog-service:0.0.1-SNAPSHOT
+
+./gradlew bootBuildImage  (maven seria mvn clean spring-boot:build-image)
+
+//pegar os contextos
+kubectl config get-contexts
+
+//pegar o contexto corrente
+kubectl config current-context
+
+//set contexto
+kubectl config use-context nome

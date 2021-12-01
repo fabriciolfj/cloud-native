@@ -1,0 +1,52 @@
+server:
+  port: 9003
+  netty:
+    connection-timeout: 5s
+  shutdown: graceful
+spring:
+  cloud:
+    function:
+      definition: dispatchOrder
+    stream:
+      bindings:
+        dispatchOrder-in-0:
+          destination: order-dispatched
+          contentType: application/json
+          group: polar-updater
+      rabbit:
+        bindings:
+          order-accepted:
+            producer:
+              transacted: true
+  rabbitmq:
+    host: localhost
+    password: password
+    username: user
+    connection-timeout: 15s
+  r2dbc:
+    username: admin
+    password: admin
+    url: r2dbc:postgresql://localhost:5433/polardb_order
+    pool:
+      max-create-connection-time: 5s
+      initial-size: 5
+      max-size: 10
+  lifecycle:
+    timeout-per-shutdown-phase: 15s
+  flyway:
+    user: ${spring.r2dbc.username}
+    password: ${spring.r2dbc.password}
+    url: jdbc:postgresql://localhost:5433/polardb_order
+management:
+  endpoint:
+    health:
+      probes:
+        enabled: true
+  health:
+    livenessstate:
+      enabled: true
+    readinessstate:
+      enabled: true
+
+polar:
+  catalog-service-url: http://localhost:9001/books/

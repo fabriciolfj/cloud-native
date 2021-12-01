@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: dispatcher-app
+  labels:
+    name: dispatcher-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: dispatcher-app
+  template:
+    metadata:
+      labels:
+        app: dispatcher-app
+    spec:
+      containers:
+      - image: fabricio211/dispacher-service:0.0.2-SNAPSHOT
+        name: dispatcher-app
+        resources:
+          limits:
+            memory: 700Mi
+            cpu: "300m"
+          requests:
+            memory: 700Mi
+            cpu: "300m"
