@@ -196,7 +196,7 @@ helm install polardb-redis bitnami/redis --set cluster.enabled=false --set image
 - token jwt: é um token enriquecido, onde possui informações relevantes.
 
 #### Processo de validade do token
-- Ao receber o token, o servidor de recurso valida o mesmo no emissor, utilizando uma chave publica provida pelo mesmo
+- Ao receber o token, o servidor de recurso valida-o no emissor, utilizando uma chave publica provida pelo mesmo
 - a chave publica é em formato jwk
 - no caso do spring security temos esse exemplo de configuração: 
 ```
