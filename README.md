@@ -190,3 +190,19 @@ helm install polardb-redis bitnami/redis --set cluster.enabled=false --set image
 #### Tipos de token
 - token id - representa um evento de autenticação, e inclui informações sobre o usuário
 - token de acesso - representa a autorização concedida ao cliente oauth2, para acessar os dados .
+
+#### Formato de tokens
+- token opaco: não é enriquecido de informações, e toda vez o servidor de recurso, precisa ir ao keycloak (no nosso caso), para buscar informações do token
+- token jwt: é um token enriquecido, onde possui informações relevantes.
+
+#### Processo de validade do token
+- Ao receber o token, o servidor de recurso valida o mesmo no emissor, utilizando uma chave publica provida pelo mesmo
+- a chave publica é em formato jwk
+- no caso do spring security temos esse exemplo de configuração: 
+```
+  spring.security:
+    oauth2:
+      resourceserver:
+        jwt:  
+          jwk-set-uri: ${KEYCLOAK_URL:http://localhost:8080}/auth/realms/PolarBookshop/protocol/openid-connect/certs
+```          
