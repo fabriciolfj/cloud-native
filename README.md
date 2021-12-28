@@ -185,3 +185,7 @@ helm install polardb-redis bitnami/redis --set cluster.enabled=false --set image
 #### Token relay
 - Padrão onde um token e repassado a serviços downstream, por exemplo:
   - gateway recebe um token válido e repassa o mesmo ao serviço alvo.
+
+#### Tipos de token
+- token id - representa um evento de autenticação, e inclui informações sobre o usuário
+- token de acesso - representa a autorização concedida ao cliente oauth2, para acessar os dados .
