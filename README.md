@@ -177,3 +177,7 @@ helm install polardb-redis bitnami/redis --set cluster.enabled=false --set image
 
 ### Session data redis
 - Para um gerenciador de sessões, podemos fazer uso do spring session project e um cache distribuído como redis.
+
+### Segurança
+- Neste projeto utilizamos o keycloak, que é responsável pela autenticidade, emissão do token, em nome do usuario final, vinculado a um cliente (app)
+- Cada usuario tem uma função, e esta é utilizada na etapa de autorização (RBAC - controle de acesso baseado em função)
