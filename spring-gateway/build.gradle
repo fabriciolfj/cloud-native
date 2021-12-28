@@ -1,4 +1,3 @@
-targetCompatibility = JavaVersion.VERSION_16
 plugins {
 	id 'org.springframework.boot' version '2.6.0-RC1'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -7,15 +6,18 @@ plugins {
 
 group = 'com.github.fabriciolfj'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = "16"
+sourceCompatibility = '17'
+
+description = 'Provides API gateway and cross-cutting concerns.'
 
 repositories {
-	maven { url 'https://repo.spring.io/milestone' }
 	mavenCentral()
+	maven { url 'https://repo.spring.io/milestone' }
 }
 
 ext {
-	set('springCloudVersion', "2021.0.0-RC1")
+	set('springCloudVersion', "2021.0.0-M3")
+	set('testcontainersVersion', "1.16.0")
 }
 
 dependencies {
@@ -32,6 +34,19 @@ dependencies {
 dependencyManagement {
 	imports {
 		mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+	}
+}
+
+bootBuildImage {
+	imageName = "fabricio211/${project.name}:${project.version}"
+	environment = ["BP_JVM_VERSION": "17.*"]
+
+	docker {
+		publishRegistry {
+			username = project.findProperty("registryUsername")
+			password = project.findProperty("registryToken")
+			url = project.findProperty("registryUrl")
+		}
 	}
 }
 

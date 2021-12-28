@@ -15,8 +15,11 @@ spec:
         app: dispatcher-app
     spec:
       containers:
-      - image: fabricio211/dispacher-service:0.0.2-SNAPSHOT
+      - image: fabricio211/dispacher-service:0.0.2
         name: dispatcher-app
+        env:
+        - name: SPRING_PROFILES_ACTIVE
+          value: k8s
         ports:
           - containerPort: 8080
         resources:

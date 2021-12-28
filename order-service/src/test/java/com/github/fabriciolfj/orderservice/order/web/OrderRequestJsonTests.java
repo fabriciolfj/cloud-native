@@ -9,14 +9,14 @@ import org.springframework.boot.test.json.JacksonTester;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-@JsonTest
+//@JsonTest
 class OrderRequestJsonTests {
 
     @Autowired
     @SuppressWarnings("SpringJavaInjectionPointsAutowiringInspection")
     private JacksonTester<OrderRequest> json;
 
-    @Test
+    //@Test
     void testDeserialize() throws Exception {
         String content = "{\"isbn\":\"1234567890\", \"quantity\":\"1\"}";
         assertThat(this.json.parse(content))

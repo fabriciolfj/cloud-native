@@ -15,11 +15,13 @@ spec:
         app: catalog-app
     spec:
       containers:
-      - image: fabricio211/catalog-service:0.0.2-SNAPSHOT
+      - image: fabricio211/catalog-service:0.0.3-SNAPSHOT
         name: catalog-app
         env:
         - name: SPRING_DATASOURCE_URL
           value: jdbc:postgresql://polardb-catalog-postgresql:5432/polardb_catalog
+        - name: SPRING_PROFILES_ACTIVE
+          value: k8s
         ports:
         - containerPort: 9001
         resources:

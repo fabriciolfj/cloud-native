@@ -9,9 +9,8 @@ services:
 
   polardb-catalog:
     image: "postgres:13"
-    container_name: "polardb-catalog"
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
       - POSTGRES_USER=admin
       - POSTGRES_PASSWORD=admin
@@ -20,7 +19,7 @@ services:
       - backend
 
   catalog-service:
-    image: "fabricio211/catalog-service:0.0.1-SNAPSHOT"
+    image: "fabricio211/catalog-service:2.0.2"
     container_name: "catalog-service"
     ports:
       - "7001:7001"
@@ -32,7 +31,7 @@ services:
       - backend
 
   order-service:
-    image: fabricio211/order-service:2.0.2
+    image: "fabricio211/order-service:3.0.0"
     container_name: order-service
     ports:
       - 9003:9003
@@ -42,7 +41,7 @@ services:
       - backend
 
   dispatcher-service:
-    image: "fabricio211/dispacher-service:0.0.1-SNAPSHOT"
+    image: "fabricio211/dispacher-service:0.0.2"
     container_name: "ppolardb-dispatcher"
     networks:
       - backend
@@ -75,15 +74,13 @@ services:
   polar-keycloak:
     image: jboss/keycloak:14.0.0
     container_name: "polar-keycloak"
-    volumes:
-      - ./keycloak:/opt/jboss/keycloak/imports
-    command:
-      - "-b 0.0.0.0 -Dkeycloak.import=/opt/jboss/keycloak/imports/realm-export.json"
     environment:
       KEYCLOAK_USER: admin
       KEYCLOAK_PASSWORD: password
     ports:
-      - 8080:8080
+      - "8080:8080"
+    networks:
+      - backend
 
 networks:
   backend:

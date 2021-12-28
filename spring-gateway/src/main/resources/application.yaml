@@ -10,17 +10,6 @@ spring:
       resourceserver:
         jwt:
           jwk-set-uri: ${KEYCLOAK_URL:http://localhost:8080}/auth/realms/PolarBookshop/protocol/openid-connect/certs
-#      client:
-#        registration:
-#          keycloak:
-#            client-id: edge-service
-#            client-secret: polar-keycloak-secret
-#            scope: openid
-#        provider:
-#          keycloak:
-#            issuer-uri: ${KEYCLOAK_URL:http://localhost:8080}/auth/realms/PolarBookshop
-  active:
-    profiles: k8s
   session:
     store-type: redis
     timeout: 10m
@@ -34,6 +23,8 @@ spring:
   cloud:
     gateway:
       default-filters:
+        - SaveSession
+        - TokenRelay
         - name: RequestRateLimiter
           args:
             redis-rate-limiter.replenishRate: 10

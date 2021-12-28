@@ -5,7 +5,7 @@ plugins {
 }
 
 group = 'com.github.fabriciolfj'
-version = '2.0.6'
+version = '3.0.0'
 sourceCompatibility = '11'
 
 configurations {
@@ -29,6 +29,7 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.cloud:spring-cloud-stream-binder-rabbit'
+	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'
 	compileOnly 'org.projectlombok:lombok'
 	runtimeOnly 'io.r2dbc:r2dbc-postgresql'
 	runtimeOnly 'org.postgresql:postgresql'
@@ -64,6 +65,14 @@ test {
 bootBuildImage {
 	imageName = "fabricio211/${project.name}:${project.version}"
 	environment = ["BP_JVM_VERSION" : "11.*"]
+
+	docker {
+		publishRegistry {
+			username = "fabricio211"
+			password = "megatron12"
+			url = project.findProperty("https://hub.docker.com/")
+		}
+	}
 }
 
 dependencyManagement {

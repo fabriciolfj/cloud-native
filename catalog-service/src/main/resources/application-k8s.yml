@@ -9,23 +9,6 @@ server:
       max: 200
       min-spare: 10
 spring:
-  cloud:
-    config:
-      uri: http://localhost:8888
-      request-connect-timeout: 2000 # 2s
-      request-read-timeout: 5000 # 5s
-      fail-fast: false
-      retry:
-        max-attempts: 6
-        initial-interval: 1000 # 1s
-        max-interval: 2000 # 2s
-        multiplier: 1.1
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          #issuer-uri: ${KEYCLOAK_URL:http://localhost:8080}/auth/realms/PolarBookshop
-          jwk-set-uri: ${KEYCLOAK_URL:http://localhost:8080}/auth/realms/PolarBookshop/protocol/openid-connect/certs
   application:
     name: catalog-service
   lifecycle:
@@ -37,7 +20,7 @@ spring:
       idle-timeout: 10000 #tempo limite de ociosidade das conexoes excedentes, ou seja, 5 - 3 = 2, se essas 2 nao serem usadas em 10 seg, seram fechadas
       connection-timeout: 5000
       pool-name: polardb-catalog-pool
-    url: jdbc:postgresql://localhost:5432/polardb_catalog
+    url: jdbc:postgresql://polardb-catalog-postgresql:5432/polardb_catalog
     username: admin
     password: admin
   jpa:

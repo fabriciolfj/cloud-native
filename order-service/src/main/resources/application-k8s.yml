@@ -18,21 +18,15 @@ spring:
           order-accepted:
             producer:
               transacted: true
-  security:
-    oauth2:
-      resourceserver:
-        jwt:
-          #issuer-uri: ${KEYCLOAK_URL:http://localhost:8080}/auth/realms/PolarBookshop
-          jwk-set-uri: ${KEYCLOAK_URL:http://localhost:8080}/auth/realms/PolarBookshop/protocol/openid-connect/certs
   rabbitmq:
-    host: localhost
-    password: password
+    host: rabbitmq
+    password: user
     username: user
     connection-timeout: 15s
   r2dbc:
     username: admin
     password: admin
-    url: r2dbc:postgresql://localhost:5433/polardb_order
+    url: r2dbc:postgresql://polardb-order-postgresql:5432/polardb_order
     pool:
       max-create-connection-time: 5s
       initial-size: 5
@@ -42,7 +36,7 @@ spring:
   flyway:
     user: ${spring.r2dbc.username}
     password: ${spring.r2dbc.password}
-    url: jdbc:postgresql://localhost:5433/polardb_order
+    url: jdbc:postgresql://polardb-order-postgresql:5432/polardb_order
 management:
   endpoint:
     health:
@@ -55,4 +49,4 @@ management:
       enabled: true
 
 polar:
-  catalog-service-url: http://localhost:9001/books/
+  catalog-service-url: http://catalog-service:9001/books/
