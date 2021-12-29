@@ -29,12 +29,12 @@ public class BookRepositoryJpaTests {
 
     //@Test
     void findBookByIsbnWhenExisting() {
-        String bookIsbn = "1234561235";
+        /*String bookIsbn = "1234561235";
         Book expectedBook = new Book(bookIsbn, "Title", "Author", Year.of(2000), BigDecimal.valueOf(12.90), null, null, 0, null);
         entityManager.persist(expectedBook);
 
         var actualBook = bookRepository.findByIsbn(bookIsbn);
 
-        assertThat(actualBook.get().getIsbn().equals(expectedBook.getIsbn()));
+        assertThat(actualBook.get().getIsbn().equals(expectedBook.getIsbn()));*/
     }
 }

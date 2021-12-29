@@ -23,8 +23,8 @@ public class OrderService {
 
     private final Consumer<Order> acceptSend;
 
-    public Flux<Order> getAllOrders() {
-        return orderRepository.findAll();
+    public Flux<Order> getAllOrders(final String id) {
+        return orderRepository.findAllByCreatedBy(id);
     }
 
     public Mono<Order> getOrder(final Long id) {
@@ -51,7 +51,7 @@ public class OrderService {
     }
 
     private Order buildAcceptedOrder(final BookResponse book, final int quantity) {
-        return new Order(book.getIsbn(), book.getTitle() + " - " + book.getAuthor(), book.getPrice(), quantity, OrderStatus.ACCEPTED);
+        return new Order(book.getIsbn(), book.getTitle() + " - " + book.getAuthor(), book.getPrice(), quantity, OrderStatus.ACCEPTED, null, null, null, null);
     }
 
     private Order buildRejectedOrder(final String isbn, final int quantity) {

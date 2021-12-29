@@ -4,7 +4,10 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.*;
 import org.springframework.data.relational.core.mapping.Table;
+
+import java.time.Instant;
 
 @Table("orders")
 @Data
@@ -18,6 +21,14 @@ public class Order extends PersistableEntity {
     private Double bookPrice;
     private Integer quantity;
     private OrderStatus status;
+    @CreatedDate
+    private Long createdDate;
+    @LastModifiedDate
+    private Long lastModifiedDate;
+    @CreatedBy
+    private String createdBy;
+    @LastModifiedBy
+    private String lastModifiedBy;
 
     public Order(final String bookIsbn, final int quantity, final OrderStatus status) {
         this.bookIsbn = bookIsbn;

@@ -1,6 +1,6 @@
 CREATE table orders (
 id bigserial primary key not null,
-created_data bigint not null,
+created_date bigint not null,
 last_modified_date bigint not null,
 version integer not null,
 book_isbn varchar(255) not null,

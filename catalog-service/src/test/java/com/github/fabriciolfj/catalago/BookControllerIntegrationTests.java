@@ -21,9 +21,9 @@ public class BookControllerIntegrationTests {
 
     //@Test
     void whenPostRequestThenBookCreated() {
-        var expectedBook = new Book("1231231231", "Title", "Author", Year.of(2000), BigDecimal.ZERO, null, null, 0, null);
+        /*var expectedBook = new Book("1231231231", "Title", "Author", Year.of(2000), BigDecimal.ZERO, null, null, null, null, 0);
         var response = restTemplate.postForEntity("/books", expectedBook, Book.class);
 
-        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);
+        assertThat(response.getStatusCode()).isEqualTo(HttpStatus.OK);*/
     }
 }
