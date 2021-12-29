@@ -205,4 +205,9 @@ helm install polardb-redis bitnami/redis --set cluster.enabled=false --set image
       resourceserver:
         jwt:  
           jwk-set-uri: ${KEYCLOAK_URL:http://localhost:8080}/auth/realms/PolarBookshop/protocol/openid-connect/certs
-```          
+```
+
+#### Segurança por meio de roles
+- Spring security associa cada usuário autenticado a uma lista de objetos grantedAuthority (autoridades concedidas ao usuário).
+- essas autoridades concedidas pode sem permissões, funções ou mesmo escopos e vêm de fontes diferentes.
+- esses objetos ficam armazenados no outro objeto chamado Authentication e  este fica no SecurityContext.
