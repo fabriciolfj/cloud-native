@@ -1,0 +1,46 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog-app
+  labels:
+    name: catalog-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: catalog-app
+  template:
+    metadata:
+      labels:
+        app: catalog-app
+    spec:
+      containers:
+      - image: fabricio211/catalog-service:0.0.3-SNAPSHOT
+        name: catalog-app
+        env:
+        - name: SPRING_DATASOURCE_URL
+          value: jdbc:postgresql://polardb-catalog-postgresql:5432/polardb_catalog
+        - name: SPRING_PROFILES_ACTIVE
+          value: k8s
+        ports:
+        - containerPort: 9001
+        resources:
+          limits:
+            memory: 700Mi
+            cpu: "300m"
+          requests:
+            memory: 700Mi
+            cpu: "300m"
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: catalog-service
+spec:
+  selector:
+    app: catalog-app
+  type: NodePort
+  ports:
+    - protocol: TCP
+      port: 9001
+      targetPort: 9001

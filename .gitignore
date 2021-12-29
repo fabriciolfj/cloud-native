@@ -4,3 +4,11 @@ catalog-service/build
 dispacher-service/build
 order-service/build
 spring-gatewat/build
+/ui-application/.gradle/7.2/dependencies-accessors/gc.properties
+/catalog-service/.gradle/7.3.2/gc.properties
+
+catalog-service/.gradle/**
+
+catalog-service/.kube/**
+
+*.lock
