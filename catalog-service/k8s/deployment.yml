@@ -1,0 +1,38 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: catalog-app
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: catalog-app
+  template:
+    metadata:
+      labels:
+        app: catalog-app
+    spec:
+      containers:
+        - image: fabricio211/catalog-service:0.0.3-SNAPSHOT
+          name: catalog-app
+          volumeMounts:
+            - name: catalog-service-volume
+              mountPath: /workspace/config
+            - name: catalog-service-volume-secret
+              mountPath: /workspace/secrets/catalog-service
+          ports:
+            - containerPort: 9001
+          resources:
+            limits:
+              memory: 700Mi
+              cpu: "300m"
+            requests:
+              memory: 700Mi
+              cpu: "300m"
+      volumes:
+        - name: catalog-service-volume-secret
+          secret:
+            secretName: catalog-service
+        - name: catalog-service-volume
+          configMap:
+            name: catalog-app

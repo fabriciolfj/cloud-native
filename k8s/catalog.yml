@@ -15,11 +15,13 @@ spec:
         app: catalog-app
     spec:
       containers:
-      - image: fabricio211/catalog-service:0.0.2-SNAPSHOT
+      - image: fabricio211/catalog-service:0.0.3-SNAPSHOT
         name: catalog-app
-        env:
-        - name: SPRING_DATASOURCE_URL
-          value: jdbc:postgresql://polardb-catalog-postgresql:5432/polardb_catalog
+        volumeMounts:
+          - name: catalog-service-volume
+            mountPath: /workspace/config
+          - name: catalog-service-volume-secret
+            mountPath: /workspace/secrets/catalog-service
         ports:
         - containerPort: 9001
         resources:
@@ -29,6 +31,13 @@ spec:
           requests:
             memory: 700Mi
             cpu: "300m"
+      volumes:
+        - name: catalog-service-volume-secret
+          secret:
+            secretName: catalog-service
+        - name: catalog-service-volume
+          configMap:
+            name: catalog-app
 ---
 apiVersion: v1
 kind: Service

@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: catalog-app
+data:
+  application.yml : |
+    server:
+      port: 9001
+      shutdown: graceful
+      tomcat:
+        accept-count: 100
+        connection-timeout: 2000
+        max-connections: 8192
+        threads:
+          max: 200
+          min-spare: 10
+    spring:
+      config:
+        import: optional:configtree:/workspace/secrets/*/
+      application:
+        name: catalog-service
+      lifecycle:
+      timeout-per-shutdown-phase: 15s
+      datasource:
+        hikari:
+          maximum-pool-size: 5
+          minimum-idle: 3
+          idle-timeout: 10000
+          connection-timeout: 5000
+          pool-name: polardb-catalog-pool
+        url: jdbc:postgresql://polardb-catalog-postgresql:5432/polardb_catalog
+        username: admin
+        password: admin
+      jpa:
+        hibernate:
+          dialect: org.hibernate.dialect.PostgreSQLDialect
+          ddl-auto: validate
+        show-sql: true
+
+
