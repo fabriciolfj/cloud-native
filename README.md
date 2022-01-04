@@ -211,3 +211,7 @@ helm install polardb-redis bitnami/redis --set cluster.enabled=false --set image
 - Spring security associa cada usuário autenticado a uma lista de objetos grantedAuthority (autoridades concedidas ao usuário).
 - essas autoridades concedidas pode sem permissões, funções ou mesmo escopos e vêm de fontes diferentes.
 - esses objetos ficam armazenados no outro objeto chamado Authentication e  este fica no SecurityContext.
+
+#### Kustomize
+- Concorrente do helm, ele gerencia, processa e gera manifestos do kubernetes
+- precisa de um arquivo de configuração chamado kustomization.yml
