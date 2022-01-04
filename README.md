@@ -215,3 +215,7 @@ helm install polardb-redis bitnami/redis --set cluster.enabled=false --set image
 #### Kustomize
 - Concorrente do helm, ele gerencia, processa e gera manifestos do kubernetes
 - precisa de um arquivo de configuração chamado kustomization.yml
+- Para aplicar, muda um pouco o apply, fica na seguinte forma:
+```
+kubectl apply -k k8s
+```
