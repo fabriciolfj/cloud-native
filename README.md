@@ -219,3 +219,8 @@ helm install polardb-redis bitnami/redis --set cluster.enabled=false --set image
 ```
 kubectl apply -k k8s
 ```
+
+#### Observabilidade com grafana/loki/fluentbit
+- loki: armazena os logs
+- fluent bit: coleta
+- grafana: visualização do log
