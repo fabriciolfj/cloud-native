@@ -38,15 +38,16 @@ spring:
     password: ${spring.r2dbc.password}
     url: jdbc:postgresql://localhost:5433/polardb_order
 management:
+  endpoints:
+    web:
+      exposure:
+        include: health
   endpoint:
     health:
+      show-details: always
+      show-components: always
       probes:
         enabled: true
-  health:
-    livenessstate:
-      enabled: true
-    readinessstate:
-      enabled: true
 
 polar:
   catalog-service-url: http://localhost:9001/books/

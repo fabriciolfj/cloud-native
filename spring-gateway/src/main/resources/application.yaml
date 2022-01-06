@@ -78,7 +78,24 @@ spring:
   lifecycle:
     timeout-per-shutdown-phase: 15s
 
-logging.level:
-  org.springframework.cloud.gateway: DEBUG
-  org.springframework.security: DEBUG
-  org.springframework.web.reactive.function.client: TRACE
+logging:
+  group:
+    circuitbreaker: io.github.resilience4j, org.springframework.cloud.circuitbreaker
+  level:
+    circuitbreaker: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health
+  endpoint:
+    health:
+      show-details: always
+      show-components: always
+      probes:
+        enabled: true
+      group:
+        readiness:
+          include:
+            - readinessState,redis

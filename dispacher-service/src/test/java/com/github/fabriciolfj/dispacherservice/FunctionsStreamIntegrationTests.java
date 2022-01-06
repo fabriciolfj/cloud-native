@@ -17,6 +17,7 @@ import java.io.IOException;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
+/*
 @SpringBootTest
 @Import(TestChannelBinderConfiguration.class)
 public class FunctionsStreamIntegrationTests {
@@ -42,4 +43,4 @@ public class FunctionsStreamIntegrationTests {
         assertThat(objectMapper.readValue(output.receive().getPayload(), OrderDispatchedMessage.class));
     }
 
-}
+}*/

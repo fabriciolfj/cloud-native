@@ -17,7 +17,7 @@ spec:
       terminationGracePeriodSeconds: 20
       containers:
         - name: gateway-app
-          image: fabricio211/edge-service:0.0.7-SNAPSHOT
+          image: fabricio211/edge-service:latest
           lifecycle:
             preStop:
               exec:

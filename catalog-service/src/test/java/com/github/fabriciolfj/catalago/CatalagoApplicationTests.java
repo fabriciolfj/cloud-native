@@ -3,10 +3,10 @@ package com.github.fabriciolfj.catalago;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class CatalagoApplicationTests {
 
-	@Test
+	//@Test
 	void contextLoads() {
 	}
 

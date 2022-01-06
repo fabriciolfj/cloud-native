@@ -31,6 +31,7 @@ import java.io.IOException;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
 
+/*
 @Import(TestChannelBinderConfiguration.class)
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 @AutoConfigureWebTestClient
@@ -132,4 +133,4 @@ class OrderControllerIntegrationTests {
 		assertThat(createdOrder.getQuantity()).isEqualTo(orderRequest.getQuantity());
 		assertThat(createdOrder.getStatus()).isEqualTo(OrderStatus.REJECTED);
 	}
-}
+}*/

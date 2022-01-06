@@ -1,4 +1,3 @@
-targetCompatibility = JavaVersion.VERSION_16
 plugins {
 	id 'org.springframework.boot' version '2.6.0-RC1'
 	id 'io.spring.dependency-management' version '1.0.11.RELEASE'
@@ -7,7 +6,7 @@ plugins {
 
 group = 'com.github.fabriciolfj'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = "16"
+sourceCompatibility = "17"
 
 repositories {
 	maven { url 'https://repo.spring.io/milestone' }
@@ -15,11 +14,13 @@ repositories {
 }
 
 ext {
-	set('springCloudVersion', "2021.0.0-RC1")
+	set('springCloudVersion', "2021.0.0-M3")
 }
 
 dependencies {
+	implementation 'io.github.resilience4j:resilience4j-micrometer'
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis'
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-data-redis-reactive'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-client'
 	implementation 'org.springframework.boot:spring-boot-starter-oauth2-resource-server'

@@ -36,5 +36,16 @@ data:
           dialect: org.hibernate.dialect.PostgreSQLDialect
           ddl-auto: validate
         show-sql: true
-
+      management:
+        endpoints:
+          web:
+            exposure:
+              include: health
+        endpoint:
+          health:
+            show-details: always
+            show-components: always
+            probes:
+              enabled: true
+    
 

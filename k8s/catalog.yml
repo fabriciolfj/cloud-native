@@ -15,7 +15,19 @@ spec:
         app: catalog-app
     spec:
       containers:
-      - image: fabricio211/catalog-service:0.0.3-SNAPSHOT
+      - image: fabricio211/catalog-service:latest
+        readinessProbe:
+          httpGet:
+            path: /actuator/health/readiness
+            port: 9001
+          initialDelaySeconds: 10
+          periodSeconds: 5
+        livenessProbe:
+          httpGet:
+            path: /actuator/health/liveness
+            port: 9001
+          initialDelaySeconds: 10
+          periodSeconds: 5
         name: catalog-app
         volumeMounts:
           - name: catalog-service-volume

@@ -15,7 +15,25 @@ spec:
         app: dispatcher-app
     spec:
       containers:
-      - image: fabricio211/dispacher-service:0.0.2
+      - image: fabricio211/dispacher-service:latest
+        livenessProbe:
+          httpGet:
+            path: /actuator/health/liveness
+            port: 9003
+          initialDelaySeconds: 10
+          timeoutSeconds: 5
+          successThreshold: 1
+          failureThreshold: 20
+          periodSeconds: 40
+        readinessProbe:
+          httpGet:
+            path: /actuator/health/readiness
+            port: 9003
+          initialDelaySeconds: 15
+          timeoutSeconds: 2
+          successThreshold: 1
+          failureThreshold: 20
+          periodSeconds: 50
         name: dispatcher-app
         env:
         - name: SPRING_PROFILES_ACTIVE
