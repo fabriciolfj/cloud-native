@@ -229,3 +229,4 @@ kubectl apply -k k8s
 - cada transação e identificada por um id de rastreamento
 - cada etapa do processamento da solicitação é chamada de span
 - para envio do rastreamento podemos utilizar o MDC nativo do java ou spring sleuth, que abstrai tal recurso.
+- Nesse projeto utilizamos o tempo (uma junção de loki com zipkin) com grafana. Existe uma tela em anexo demonstrando um exemplo de consulta.
