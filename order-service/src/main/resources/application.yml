@@ -1,9 +1,16 @@
 server:
-  port: 9003
+  port: 9002
   netty:
     connection-timeout: 5s
   shutdown: graceful
 spring:
+  zipkin:
+    base-url: ${ZIPKIN_URL:http://localhost:9411/}
+  sleuth:
+    sampler:
+      probability: 1.0
+  application:
+    name: order-service
   cloud:
     function:
       definition: dispatchOrder
@@ -41,13 +48,17 @@ management:
   endpoints:
     web:
       exposure:
-        include: health
+        include: health, heapdump, info, prometheus
   endpoint:
     health:
       show-details: always
       show-components: always
       probes:
         enabled: true
+  metrics:
+    tags:
+      application: ${spring.application.name}
+
 
 polar:
   catalog-service-url: http://localhost:9001/books/

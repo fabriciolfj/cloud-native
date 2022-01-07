@@ -11,6 +11,10 @@ spec:
       app: catalog-app
   template:
     metadata:
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /actuator/prometheus
+        prometheus.io/port: "9001"
       labels:
         app: catalog-app
     spec:

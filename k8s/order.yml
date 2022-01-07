@@ -8,6 +8,10 @@ spec:
   selector:
     matchLabels:
       app: order-app
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /actuator/prometheus
+        prometheus.io/port: "9002"
   replicas: 1
   strategy:
     rollingUpdate:
@@ -32,7 +36,7 @@ spec:
         livenessProbe:
           httpGet:
             path: /actuator/health/liveness
-            port: 9003
+            port: 9002
           initialDelaySeconds: 10
           timeoutSeconds: 5
           successThreshold: 1
@@ -41,7 +45,7 @@ spec:
         readinessProbe:
           httpGet:
             path: /actuator/health/readiness
-            port: 9003
+            port: 9002
           initialDelaySeconds: 15
           timeoutSeconds: 2
           successThreshold: 1

@@ -13,6 +13,10 @@ spec:
     metadata:
       labels:
         app: dispatcher-app
+      annotations:
+        prometheus.io/scrape: "true"
+        prometheus.io/path: /actuator/prometheus
+        prometheus.io/port: "9003"
     spec:
       containers:
       - image: fabricio211/dispacher-service:latest
