@@ -224,3 +224,8 @@ kubectl apply -k k8s
 - loki: armazena os logs
 - fluent bit: coleta
 - grafana: visualização do log
+
+#### Rastreamento distribuído
+- cada transação e identificada por um id de rastreamento
+- cada etapa do processamento da solicitação é chamada de span
+- para envio do rastreamento podemos utilizar o MDC nativo do java ou spring sleuth, que abstrai tal recurso.
